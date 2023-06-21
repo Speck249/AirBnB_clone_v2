@@ -43,10 +43,10 @@ class FileStorage:
     def reload(self):
         """Loads storage dictionary from file"""
         classes = {
-                    'BaseModel': BaseModel, 'User': User, 'Place': Place,
-                    'State': State, 'City': City, 'Amenity': Amenity,
-                    'Review': Review
-                  }
+                "BaseModel": BaseModel, "User": User, "State": State,
+                "Place": Place, "City": City, "Amenity": Amenity,
+                "Review": Review
+                }
         try:
             temp = {}
             with open(FileStorage.__file_path, 'r') as f:
@@ -56,7 +56,6 @@ class FileStorage:
                     eval(obj)(**val)
         except FileNotFoundError:
             pass
-
 
     def delete(self, obj=None):
         """
