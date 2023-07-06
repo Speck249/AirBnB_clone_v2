@@ -22,6 +22,6 @@ def do_pack():
               " web_static".format(archive_name))
 
         return "versions/{}".format(archive_name)
-    except:
-        return None
 
+    except Exception as e:
+        return None
