@@ -14,8 +14,7 @@ def do_pack():
     try:
         local("mkdir -p versions")
 
-        now = datetime.now()
-        time = now.strftime("%Y%m%d%H%M%S")
+        time = datetime.now().strftime("%Y%m%d%H%M%S")
 
         archive_name = "web_static_{}.tgz".format(time)
         local("tar -cvzf versions/{}"
