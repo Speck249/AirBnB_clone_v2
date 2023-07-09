@@ -1,18 +1,25 @@
 #!/usr/bin/env bash
 # Install nginx
 sudo apt-get update
-sudo apt-get install nginx
+sudo apt-get -y install nginx
 sudo service nginx start
+
 # Ascertain nginx is running
 # sudo service nginx status
 
 # create new directories, if they don't exist
-sudo mkdir -p /data/web_static/releases/test/
 sudo mkdir -p /data/web_static/shared/
-sudo touch /data/web_static/releases/test/index.html
+sudo mkdir -p /data/web_static/releases/test/
 
-# Create fake HTML file
-echo "Test Content" | sudo tee /data/web_static/releases/test/index.html
+# Create and populate a fake HTML file
+sudo touch /data/web_static/releases/test/index.html
+echo "<html>
+  <head>
+  </head>
+  <body>
+    Holberton School
+  </body>
+</html>" | sudo tee /data/web_static/releases/test/index.html
 
 # Create symbolic link 
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
