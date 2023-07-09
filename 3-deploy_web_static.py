@@ -27,6 +27,7 @@ def do_pack():
     except Exception as e:
         return None
 
+
 def do_deploy(archive_path):
     """
     Deploys archive.
@@ -69,6 +70,7 @@ def do_deploy(archive_path):
     except Exception as e:
         return False
 
+
 def deploy():
     """
     Executes full deployment.
@@ -83,6 +85,5 @@ def deploy():
 
         if not output:
             return False
-
 
     return True
