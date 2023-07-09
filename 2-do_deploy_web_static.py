@@ -12,6 +12,7 @@ env.user = 'ubuntu'
 env.hosts = ['54.90.42.36', '100.25.34.43']
 env.key_filename = ['~/.ssh/web01/school', '~/.ssh/web02/new_school']
 
+
 def do_deploy(archive_path):
     """
     Deploys archive.
@@ -29,7 +30,8 @@ def do_deploy(archive_path):
 
         """Uncompress archive to given dir."""
         run("mkdir -p /data/web_static/releases/{}".format(archive_name))
-        run("tar -xzf /tmp/{} -C /data/web_static/releases/{}".format(file_name, archive_name))
+        run("tar -xzf /tmp/{} -C /data/web_static/releases"
+            "/{}".format(file_name, archive_name))
 
         """Delete archive from web server"""
         run("rm /tmp/{}".format(file_name))
@@ -45,9 +47,10 @@ def do_deploy(archive_path):
         run("rm -rf /data/web_static/current")
 
         """Create a new symbolic link."""
-        run("ln -s /data/web_static/releases/{}/ /data/web_static/current".format(archive_name))
+        run("ln -s /data/web_static/releases/{}/ /data/web_static"
+            "/current".format(archive_name))
 
         return True
 
-    except:
+    except Exception as e:
         return False
