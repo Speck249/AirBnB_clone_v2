@@ -4,21 +4,23 @@ Module generates .tgz archive
 from contents of web_static dir.
 """
 from fabric.api import local
-from datetime import datetime
+from datetime import date
+from time import strftime
 
 
 def do_pack():
     """
     Function generates .tgz archive.
     """
+    time = strftime("%Y%m%d%H%M%S")
+
     try:
-        time = datetime.now().strftime("%Y%m%d%H%M%S")
         local("mkdir -p versions")
-
-        tgz_archive = "versions/web_static_{}.tgz".format(time)
-        local("tar -cvzf {} web_static".format(tgz_archive))
-
-        return tgz_archive
+        local("tar -cvzf versions/web_static_{}"
+              ".tgz web_static/".format(time))
+        archive_path = "versions/web_static_{}.tgz".format(time)
+        
+        return archive_path
 
     except Exception as e:
         return None
