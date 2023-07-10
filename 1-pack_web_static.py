@@ -19,7 +19,7 @@ def do_pack():
         local("tar -cvzf versions/web_static_{}"
               ".tgz web_static/".format(time))
         archive_path = "versions/web_static_{}.tgz".format(time)
-        
+
         return archive_path
 
     except Exception as e:
