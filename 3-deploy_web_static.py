@@ -33,7 +33,7 @@ def do_deploy(archive_path):
     Deploys archive.
     """
 
-    if exists(archive_path) is False:
+    if not path.exists(archive_path):
         return False
 
     file_name = archive_path.split("/")[-1]
@@ -44,19 +44,19 @@ def do_deploy(archive_path):
         put(archive_path, "/tmp/{}".format(file_name))
 
         """Uncompress archive to given dir."""
-        run("mkdir -p /data/web_static/releases/{}/".format(archive_name))
+        run("mkdir -p /data/web_static/releases/{}".format(archive_name))
         run("tar -xzf /tmp/{} -C /data/web_static/releases"
-            "/{}/".format(file_name, archive_name))
+            "/{}".format(file_name, archive_name))
 
         """Delete archive from web server"""
         run("rm /tmp/{}".format(file_name))
 
         """Move web_static directory contents to parent directory."""
-        target_dir = "/data/web_static/releases/{}/".format(archive_name)
-        run("mv {}web_static/* {}".format(target_dir, target_dir))
+        target_dir = "/data/web_static/releases/{}".format(archive_name)
+        run("mv {}/web_static/* {}".format(target_dir, target_dir))
 
         """Delete web_static directory."""
-        run("rm -rf {}web_static".format(target_dir))
+        run("rm -rf {}/web_static".format(target_dir))
 
         """Delete symbolic link from web server"""
         run("rm -rf /data/web_static/current")
@@ -65,17 +65,19 @@ def do_deploy(archive_path):
         run("ln -s /data/web_static/releases/{}/ /data/web_static"
             "/current".format(archive_name))
 
+        print("New version deployed!")
+
         return True
 
     except Exception as e:
         return False
-
 
 def deploy():
     """
     Executes full deployment.
     """
     archive_path = do_pack()
+
     if not archive_path:
         return False
 
