@@ -78,14 +78,7 @@ def deploy():
     """
     archive_path = do_pack()
 
-    if not archive_path:
+    if archive_path is None:
         return False
 
-    for host in env.hosts:
-        env.host_string = host
-        output = do_deploy(archive_path)
-
-        if not output:
-            return False
-
-    return True
+    return do_deploy(archive_path)
