@@ -9,8 +9,8 @@ from fabric.api import run
 from fabric.api import env
 
 env.user = 'ubuntu'
-env.hosts = ['100.25.34.43']
-env.key_filename = ['~/.ssh/web02/new_school']
+env.hosts = ['54.90.42.36', '100.25.34.43']
+env.key_filename = ['~/.ssh/web01/school', '~/.ssh/web02/new_school']
 
 
 def do_deploy(archive_path):
