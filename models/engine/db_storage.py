@@ -110,4 +110,4 @@ class DBStorage():
         """
         Close current active session.
         """
-        self.__session.close()
+        self.__session.remove()
