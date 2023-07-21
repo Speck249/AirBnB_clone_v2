@@ -9,12 +9,12 @@ app = Flask(__name__)
 Creates new Flask app instance.
 """
 
-@app.route('/', strict_slashes=False)
-""" Maps root URL path '/' to hello(). """
 
+@app.route('/', strict_slashes=False)
 def hello():
     """ Returns string. """
     return ("Hello HBNB!")
+
 
 if __name__ == '__main__':
     """ Starts Flask dev server. """
