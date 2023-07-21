@@ -12,7 +12,7 @@ Create new Flask app instance.
 
 @app.route('/', strict_slashes=False)
 def hello():
-    """ Return string. """
+    """ Maps root URL path '/' to hello(). """
     return ("Hello HBNB!")
 
 
