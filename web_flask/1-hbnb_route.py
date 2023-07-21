@@ -18,8 +18,8 @@ def hello():
 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
-    """ Return string. """
-    return ("HBNB!")
+    """ Maps URL path '/hbnb' to hbnb(). """
+    return ("HBNB")
 
 
 if __name__ == '__main__':
