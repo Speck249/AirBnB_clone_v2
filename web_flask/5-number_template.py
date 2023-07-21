@@ -13,19 +13,19 @@ Create new Flask app instance.
 
 @app.route('/', strict_slashes=False)
 def hello():
-    """ Return string. """
+    """ Maps root URL path '/' to hello(). """
     return ("Hello HBNB!")
 
 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
-    """ Return string. """
+    """ Maps URL path '/hbnb' to hbnb(). """
     return ("HBNB!")
 
 
 @app.route('/c/<text>', strict_slashes=False)
 def c_text(text):
-    """ Return string. """
+    """ Maps URL path '/c/<text>' to c_text(). """
     text = text.replace("_", " ")
     return ("C {}".format(text))
 
@@ -34,20 +34,20 @@ def c_text(text):
            strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
 def python_text(text):
-    """ Return string. """
+    """ Maps URL path '/python/<text>' to python_text(). """
     text = text.replace("_", " ")
     return ("Python {}".format(text))
 
 
 @app.route('/number/<int:n>', strict_slashes=False)
 def number(n):
-    """ Return string. """
+    """ Maps URL path '/number/<n>' to number(). """
     return ("{} is a number".format(n))
 
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n=None):
-    """ Return string. """
+    """ Maps URL path '/number_template/<n>' to number_template(). """
     return render_template("5-number.html", number=n)
 
 
