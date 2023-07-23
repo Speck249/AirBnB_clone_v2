@@ -16,11 +16,11 @@ class State(BaseModel, Base):
     Creates Table 'states' with
     one Column for storing name.
     """
-    __tablename__ = 'states'
-
-    name = Column(String(128), nullable=False)
 
     if getenv("HBNB_TYPE_STORAGE") == "db":
+    
+        __tablename__ = 'states'
+        name = Column(String(128), nullable=False)
         cities = relationship("City", backref="state",
                               cascade='all, delete')
 
@@ -35,6 +35,6 @@ class State(BaseModel, Base):
             city_states = []
 
             for city_item in all_cities:
-                if city.state_id == self.id:
+                if city_item.state_id == self.id:
                     city_states.append(city_item)
             return city_states
